@@ -7,8 +7,8 @@
 		<ProjectGuid>{7BCB2908-B003-45D9-BE68-50CBA5217603}</ProjectGuid>
 		<OutputType>Library</OutputType>
 		<AppDesignerFolder>Properties</AppDesignerFolder>
-		<RootNamespace>Distance.ModTemplate</RootNamespace>
-		<AssemblyName>Distance.ModTemplate</AssemblyName>
+		<RootNamespace>Mod.Anolytics</RootNamespace>
+		<AssemblyName>Mod.Anolytics</AssemblyName>
 		<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 		<FileAlignment>512</FileAlignment>
 		<Deterministic>true</Deterministic>

@@ -1,0 +1,14 @@
+﻿{
+	"FriendlyName": "Anolytics",
+	"Description": "Disable analytics in Distance, if it bothers you.",
+	"Author": "Ciastex",
+	"Contact": "Discord: Ciastex#6170",
+	"Porter": "Reherc",
+	"PorterContact": "Github: @REHERC",
+	"ModuleFileName": "Distance.Anolytics.dll",
+	"Priority": 10,
+	"SkipLoad": false,
+	"RequiredGSLs": [
+		"com.github.reherc/Centrifuge.Distance"
+	]
+}
