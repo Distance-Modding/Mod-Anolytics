@@ -2,18 +2,23 @@ name: Build and Deploy
 on:
   push:
     branches: 
-      - main
+      - [ $default-branch ]
     paths-ignore:
       - "*.md"
   pull_request:
     branches: 
-      - main
+      - [ $default-branch ]
     paths-ignore:
       - "*.md"
   workflow_dispatch:
 jobs:
   build:
     name: Build and Publish GitHub Release
+
+    env:
+      Solution: Distance.Anolytics.sln
+
+
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -24,13 +29,13 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2
         uses: NuGet/setup-nuget@v1.0.5
       - name: Restore Solution Packages
-        run: nuget restore Distance.Anolytics.sln
+        run: nuget restore $env:Solution
       - name: Build Solution
-        run: msbuild Distance.Anolytics.sln
+        run: msbuild $env:Solution
       - name: Release Artifacts
         uses: softprops/action-gh-release@v1
         with:
-        name: Release {{ github.run_number }}
-          body: "This release was automatically generated as part of a GitHib workflow. Please read the repository README for more info."
+          name: "Release {{ github.run_number }}"
+          body: "This release was automatically generated as part of a GitHub workflow. Please read the repository README for more info."
           files: |
             Build/Distance Anolytics.zip
