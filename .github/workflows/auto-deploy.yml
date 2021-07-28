@@ -1,20 +1,26 @@
-name: Build and Deploy
+name: Build and Release
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
     paths-ignore:
       - "*.md"
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
     paths-ignore:
       - "*.md"
   workflow_dispatch:
 jobs:
   build:
     name: Build and Publish GitHub Release
+    runs-on: windows-latest
     env:
       Solution: Distance.Anolytics.sln
-    runs-on: windows-latest
+      ReleaseName: "Release ${{ github.run_number }}"
+      ReleaseBody: "This release was automatically generated as part of a GitHub workflow. Please read the repository README for more info."
+      ReleaseArtifacts: |
+        Build.Distance Anolytics.zip
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,12 +33,11 @@ jobs:
       - name: Restore Solution Packages
         run: nuget restore $env:Solution
       - name: Build Solution
-        run: msbuild $env:Solution
-      - name: Release Artifacts
+        run: msbuild $env:Solution -m
+      - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          name: "Release ${{ github.run_number }}"
+          name: ${{ env.ReleaseName }}
           tag_name: workflow-run-${{ github.run_number }}
-          body: "This release was automatically generated as part of a GitHub workflow. Please read the repository README for more info."
-          files: |
-            Build/Distance Anolytics.zip
+          body: ${{ env.ReleaseBody }}
+          files: ${{ env.ReleaseArtifacts }}
