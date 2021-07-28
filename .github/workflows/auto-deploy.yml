@@ -31,6 +31,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
         name: Release {{ github.run_number }}
-          bosy: This release was automatically generated as part of a GitHib workflow. Please read the repository's README for more info.
+          body: This release was automatically generated as part of a GitHib workflow. Please read the repository's README for more info.
             files: |
             Build/Distance Anolytics.zip
