@@ -1,24 +1,19 @@
 name: Build and Deploy
 on:
   push:
-    branches: 
-      - [ main ]
+    branches: [ main ]
     paths-ignore:
       - "*.md"
   pull_request:
-    branches: 
-      - [ main ]
+    branches: [ main ]
     paths-ignore:
       - "*.md"
   workflow_dispatch:
 jobs:
   build:
     name: Build and Publish GitHub Release
-
     env:
       Solution: Distance.Anolytics.sln
-
-
     runs-on: windows-latest
     steps:
       - name: Checkout
