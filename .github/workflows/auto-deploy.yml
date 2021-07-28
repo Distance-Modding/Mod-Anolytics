@@ -19,7 +19,8 @@ jobs:
       Solution: Distance.Anolytics.sln
       ReleaseName: "Release ${{ github.run_number }}"
       ReleaseBody: "This release was automatically generated as part of a GitHub workflow. Please read the repository README for more info."
-      ReleaseArtifacts: Build/Distance Anolytics.zip
+      ReleaseArtifacts: |
+        Build/Distance Anolytics.zip
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -36,7 +37,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ env.ReleaseName }}
+          name: "${{ env.ReleaseName }}""
           tag_name: workflow-run-${{ github.run_number }}
-          body: ${{ env.ReleaseBody }}
-          files: ${{ env.ReleaseArtifacts }}
+          body: "${{ env.ReleaseBody }}
+          files: "${{ env.ReleaseArtifacts }}"
