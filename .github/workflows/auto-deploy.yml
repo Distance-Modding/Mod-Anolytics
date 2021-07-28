@@ -20,7 +20,7 @@ jobs:
       ReleaseName: "Release ${{ github.run_number }}"
       ReleaseBody: "This release was automatically generated as part of a GitHub workflow. Please read the repository README for more info."
       ReleaseArtifacts: |
-        Build.Distance Anolytics.zip
+        Build/Distance Anolytics.zip
     steps:
       - name: Checkout
         uses: actions/checkout@v2
