@@ -32,7 +32,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           name: "Release {{ github.run_number }}"
-          tag_name: workflow-run-{{ github.run_number }}
+          tag_name: workflow-run-${{ github.run_number }}
           body: "This release was automatically generated as part of a GitHub workflow. Please read the repository README for more info."
           files: |
             Build/Distance Anolytics.zip
