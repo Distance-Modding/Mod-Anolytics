@@ -20,8 +20,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Setup build tools
+      - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.0.2
+      - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
       - name: Restore Solution Packages
         run: nuget restore $env:Solution
