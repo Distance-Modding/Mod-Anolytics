@@ -1,50 +1,50 @@
 name: Build and Deploy
 
 on:
-	# Run workflow when code is pushed on the branch 'main'
-	push:
-		branches: 
-			- main
-		paths-ignore:
-			- "*.md"
+    # Run workflow when code is pushed on the branch 'main'
+    push:
+        branches: 
+            - main
+        paths-ignore:
+            - "*.md"
 
-	# Run workflow when pull request is pushed on the branch 'main'
-	pull_request:
-		branches: 
-			- main
-		paths-ignore:
-			- "*.md"
+    # Run workflow when pull request is pushed on the branch 'main'
+    pull_request:
+        branches: 
+            - main
+        paths-ignore:
+            - "*.md"
 
-	# Allows to run this workflow manually from the Actions tab
-	workflow_dispatch:
+    # Allows to run this workflow manually from the Actions tab
+    workflow_dispatch:
 
 jobs:
-	build:
-		name: Build and Publish GitHub Release
-		
-		# The type of runner that the job will run on
-		runs-on: windows-latest
+  build:
+    name: Build and Publish GitHub Release
+    
+    # The type of runner that the job will run on
+    runs-on: windows-latest
 
-		steps:
-			- name: Checkout
-			  uses: actions/checkout@v2
-			  with:
-				submodules: recursive
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
-			- name: Setup build tools
-			  uses: microsoft/setup-msbuild@v1.0.2
-			  uses: NuGet/setup-nuget@v1.0.5
+      - name: Setup build tools
+        uses: microsoft/setup-msbuild@v1.0.2
+        uses: NuGet/setup-nuget@v1.0.5
 
-			- name: Restore Solution Packages
-			  run: nuget restore Distance.Anolytics.sln
+      - name: Restore Solution Packages
+        run: nuget restore Distance.Anolytics.sln
 
-			- name: Build Solution
-			  run: msbuild Distance.Anolytics.sln
+      - name: Build Solution
+        run: msbuild Distance.Anolytics.sln
 
-			- name: Release Artifacts
-			  uses: softprops/action-gh-release@v1
-			  with:
-			  name: Release {{ github.run_number }}
-			    bosy: This release was automatically generated as part of a GitHib workflow. Please read the repository's README for more info.
-			  	files: |
-				  Build/Distance Anolytics.zip
+      - name: Release Artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+        name: Release {{ github.run_number }}
+          bosy: This release was automatically generated as part of a GitHib workflow. Please read the repository's README for more info.
+            files: |
+            Build/Distance Anolytics.zip
