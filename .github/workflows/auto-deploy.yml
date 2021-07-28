@@ -39,5 +39,5 @@ jobs:
         with:
           name: "${{ env.ReleaseName }}"
           tag_name: workflow-run-${{ github.run_number }}
-          body: "${{ env.ReleaseBody }}
+          body: "${{ env.ReleaseBody }}"
           files: "${{ env.ReleaseArtifacts }}"
