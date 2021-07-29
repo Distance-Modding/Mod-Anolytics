@@ -34,7 +34,7 @@ jobs:
       - name: Build Solution
         run: msbuild $env:SOLUTION -m
       - name: Format Artifact List
-        id: 
+        id: artifacts
         uses: frabert/replace-string-action@v2.0
         with:
           string: ${{ env.ARTIFACTS }}
@@ -46,4 +46,4 @@ jobs:
           name: "Automatic Deployment #${{ github.run_number }}"
           tag_name: workflow-run-${{ github.run_number }}
           body: "${{ env.RELEASE_BODY }}"
-          files: "${{ env.RELEASE_ARTIFACTS }}"
+          files: "${{ steps.artifacts.outputs.replaced }}"
